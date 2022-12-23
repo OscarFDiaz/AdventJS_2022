@@ -1,6 +1,6 @@
 ## AdventJS Challenges
 
-![adventJs](../Assets/Portada.jpg)
+![adventJs](./Assets/Portada.jpg)
 
 ## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
 
