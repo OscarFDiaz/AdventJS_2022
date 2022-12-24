@@ -34,3 +34,57 @@ checkStepNumbers(['tree_1', 'tree_1', 'house'], [2, 1, 10]); // => false
 
 - La posición del nombre del sistema en `systemNames` y el número de paso en `stepNumbers` corresponden al mismo sistema.
 - Los pasos en `stepNumbers` pueden repetirse para diferentes sistemas.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'boolean';
+
+Actual: 'boolean';
+```
+
+### Test #02
+
+```js
+Test: checkStepNumbers(['tree_1', 'tree_2', 'house', 'tree_1', 'tree_2', 'house'], [1, 33, 10, 2, 44, 20]);
+
+Expected: true;
+
+Actual: true;
+```
+
+### Test #03
+
+```js
+Test: checkStepNumbers(['tree_1', 'tree_1', 'house'], [2, 1, 10]);
+
+Expected: false;
+
+Actual: false;
+```
+
+### Test #04
+
+```js
+Test: checkStepNumbers(['tree_1', 'tree_1', 'house'], [1, 2, 10]);
+
+Expected: true;
+
+Actual: true;
+```
+
+### Test #05
+
+```js
+Test: checkStepNumbers(['house', 'house', 'tree_1', 'tree_1', 'house', 'tree_2', 'tree_2', 'tree_3'], [5, 2, 1, 2, 3, 4, 5, 6]);
+
+Expected: false;
+
+Actual: false;
+```
