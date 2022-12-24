@@ -1,38 +1,111 @@
-## AdventJS Challenges
+# [Reto #14: El mejor camino](https://adventjs.dev/es/challenges/2022/14)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_14](../Assets/Retos_SVG/14.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Santa Claus está construyendo pirámides de hielo en el Polo Norte para entrenar a sus renos.
 
-## Retos
+Cada reno comienza en la cima de la pirámide y debe elegir el camino óptimo hacia abajo para recorrerlo **en el menor tiempo posible**. Cada nivel tiene un número que determina el tiempo que necesita para llegar ahí.
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Al llegar a una posición, el reno **solo puede deslizarse hacia abajo y en diagonal hacia la izquierda o la derecha**. Visualmente, la pirámide se ve así:
 
-## Tests
+```js
+    0
+   / \
+  7   4
+ / \ / \
+2   4   6
+```
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+En código la representamos así:
+
+```js
+[[0], [7, 4], [2, 4, 6]];
+```
+
+Santa Claus necesita un programa que le dice cuál es el tiempo mínimo que puede tomar cada reno para deslizarse por la pirámide usando el camino más óptimo.
+
+En el ejemplo anterior, el camino más óptimo es `0 -> 4 -> 4`, que toma un total de `0 + 4 + 4 = 8` unidades de tiempo. El resultado sería: `8`.
+
+¿Por qué no es `6`? No es `0 -> 4 -> 2` porque al bajar a la posición del `4` ya no puede diagonalmente llegar a la posición del `2`. Así que el camino más corto posible es `8`. Más ejemplos:
+
+```js
+getOptimalPath([[0], [2, 3]]); // 2
+// 0 -> 2
+
+getOptimalPath([[0], [3, 4], [9, 8, 1]]); // 5
+// 0 -> 4 -> 1
+
+getOptimalPath([[1], [1, 5], [7, 5, 8], [9, 4, 1, 3]]); // 8
+// 1 -> 1 -> 5 -> 1
+```
+
+## A tener en cuenta:
+
+- Ten en cuenta que sólo puedes bajar en diagonal y hacia abajo desde cualquier posición.
+- La primera posición de la pirámide puede ser diferente a 0.
+- Las pirámides pueden tener hasta 10 niveles.
+- Los números en las pirámides pueden ser negativos.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'number';
+
+Actual: 'number';
+```
+
+### Test #02
+
+```js
+Test: getOptimalPath([[0], [7, 4], [2, 4, 6]]);
+
+Expected: 8;
+
+Actual: 8;
+```
+
+### Test #03
+
+```js
+Test: getOptimalPath([[0], [2, 3]]);
+
+Expected: 2;
+
+Actual: 2;
+```
+
+### Test #04
+
+```js
+Test: getOptimalPath([[0], [3, 4], [9, 8, 1]]);
+
+Expected: 5;
+
+Actual: 5;
+```
+
+### Test #05
+
+```js
+Test: getOptimalPath([[1], [1, 5], [7, 5, 8], [9, 4, 1, 3]]);
+
+Expected: 8;
+
+Actual: 8;
+```
+
+### Test #06
+
+```js
+Test: getOptimalPath([[1], [1, 5], [7, 5, 8], [9, 4, 1, 3], [-1, -1, -1, -1, -1]]);
+
+Expected: 7;
+
+Actual: 7;
+```

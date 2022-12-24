@@ -1,38 +1,82 @@
-## AdventJS Challenges
+# [Reto #20: Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_20](../Assets/Retos_SVG/20.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Papá Noel se ha dado cuenta de que ni con la colaboración de todos los elfos va a poder entregar todos los regalos a tiempo. Por eso va a pedir ayuda a sus amigos de Autentia.
 
-## Retos
+Desde Autentia nos han indicado que necesitan un programa para saber qué equipo de renos enviar a cada país. Hay **diferentes tipos de renos** y cada uno de ellos puede llevar un peso de regalos. Por ejemplo:
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+```js
+const reindeerTypes = [
+  { type: 'Nuclear', weightCapacity: 50 },
+  { type: 'Electric', weightCapacity: 10 },
+  { type: 'Gasoline', weightCapacity: 5 },
+  { type: 'Diesel', weightCapacity: 1 },
+];
+```
 
-## Tests
+En el listado de regalos que tiene Papá Noel se expresa cuánto pesa cada regalo y cuál es su país destino. El peso de los regalos siempre es un número natural. Por ejemplo:
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+const gifts = [
+  { country: 'Spain', weight: 30 },
+  { country: 'Spain', weight: 7 },
+  { country: 'France', weight: 17 },
+];
+```
+
+Autentia nos comenta que, para que el equipo de renos a enviar a cada país sea óptimo, deberíamos:
+
+- Enviar el mayor número de renos posibles de mayor capacidad de carga
+- Aprovechar al máximo el peso que cada reno puede soportar.
+- Los renos tienen un comportamiento extraño y **no admiten que en el equipo haya más renos de un tipo que renos del siguiente tipo por orden descendente de capacidad de carga.**
+
+Por ejemplo. A Francia (17) no se mandarían diecisiete renos diésel (17 _ 1). Hay renos con mayor capacidad de carga, pero tampoco se mandaría un reno nuclear (50), ya que se estaría desaprovechando su capacidad. Se mandaría un reno eléctrico (10), uno gasolina (5) y dos diésel (2 _ 1).
+
+A España (37) no se podría mandar un equipo formado por tres eléctricos (3 _ 10), uno gasolina (5) y dos diésel (2 _ 1), ya que **no puede haber más eléctricos que a gasolina.** Tampoco dos eléctricos (2 _ 10), tres gasolina (3 _ 5) y dos diésel (2 _ 1), pues **no puede haber más a gasolina que a diésel.** Habría que mandar dos eléctricos (2 _ 10), dos a gasolina (2 _ 5) y siete a diésel (7 _ 1).
+
+```js
+const reindeerTypes = [
+  { type: 'Nuclear', weightCapacity: 50 },
+  { type: 'Electric', weightCapacity: 10 },
+  { type: 'Gasoline', weightCapacity: 5 },
+  { type: 'Diesel', weightCapacity: 1 },
+];
+
+const gifts = [
+  { country: 'Spain', weight: 30 },
+  { country: 'France', weight: 17 },
+  { country: 'Italy', weight: 50 },
+];
+
+howManyReindeers(reindeerTypes, gifts);
+// [{
+//   country: 'Spain',
+//   reindeers: [
+//     { type: 'Electric', num: 1 },
+//     { type: 'Gasoline', num: 3 },
+//     { type: 'Diesel', num: 5 }
+//   ]
+// }, {
+//   country: 'France',
+//   reindeers: [
+//     { type: 'Electric', num: 1 },
+//     { type: 'Gasoline', num: 1 },
+//     { type: 'Diesel', num: 2 }
+//   ]
+//  }, {
+//   country: 'Italy',
+//   reindeers: [
+//     { type: 'Electric', num: 3 },
+//     { type: 'Gasoline', num: 3 },
+//     { type: 'Diesel', num: 5 }
+//   ]
+// }]
+```
+
+## A tener en cuenta:
+
+- Siempre habrá un tipo de reno con capacidad de carga 1.
+- Siempre habrá al menos dos tipos de renos disponibles.
+- No existe límite de renos de un mismo tipo a enviar siempre y cuando se ciña a las restricciones anteriormente expuestas.
+- Tu función debe devolver los renos ordenados por capacidad de carga de mayor a menor.

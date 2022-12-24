@@ -1,38 +1,140 @@
-## AdventJS Challenges
+# [Reto #5: Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_05](../Assets/Retos_SVG/5.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Para no cansar a los renos, Papá Noel quiere dejar el máximo número de regalos haciendo el menor número posible de viajes.
 
-## Retos
+Tiene un array de ciudades donde cada elemento es el número de regalos que puede dejar allí. `[12, 3, 11, 5, 7]`. Por otro lado, el límite de regalos que caben en su saco. Y, finalmente, el número de ciudades máximo que sus renos pueden visitar.
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Como no quiere dejar una ciudad a medias, <strong>si no puede dejar todos los regalos que son de esa ciudad, no deja ninguno allí.</strong>
 
-## Tests
+Crea un programa que le diga <strong>la suma más alta de regalos</strong> que podría repartir teniendo en cuenta el máximo de regalos que puede transportar y el número máximo de ciudades que puede visitar:
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+const giftsCities = [12, 3, 11, 5, 7];
+const maxGifts = 20;
+const maxCities = 3;
+
+// la suma más alta de regalos a repartir
+// visitando un máximo de 3 ciudades
+// es de 20: [12, 3, 5]
+
+// la suma más alta sería [12, 7, 11]
+// pero excede el límite de 20 regalos y tendría
+// que dejar alguna ciudad a medias.
+
+getMaxGifts(giftsCities, maxGifts, maxCities); // 20
+```
+
+Si no se puede realizar ningún viaje que satisface los requerimientos, el resultado debe ser `0`. Más ejemplos:
+
+```js
+getMaxGifts([12, 3, 11, 5, 7], 20, 3); // 20
+getMaxGifts([50], 15, 1); // 0
+getMaxGifts([50], 100, 1); // 50
+getMaxGifts([50, 70], 100, 1); // 70
+getMaxGifts([50, 70, 30], 100, 2); // 100
+getMaxGifts([50, 70, 30], 100, 3); // 100
+getMaxGifts([50, 70, 30], 100, 4); // 100
+```
+
+A tener en cuenta:
+
+- maxGifts >= 1
+- giftsCities.length >= 1
+- maxCities >= 1
+- El número de maxCities puede ser mayor a giftsCities.length
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'number';
+
+Actual: 'number';
+```
+
+### Test #02
+
+```js
+Test: getMaxGifts([12, 3, 11, 5, 7], 20, 3);
+
+Expected: 20;
+
+Actual: 20;
+```
+
+### Test #03
+
+```js
+Test: getMaxGifts([50], 15, 1);
+
+Expected: 0;
+
+Actual: 0;
+```
+
+### Test #04
+
+```js
+Test: getMaxGifts([50], 100, 1);
+
+Expected: 50;
+
+Actual: 50;
+```
+
+### Test #05
+
+```js
+Test: getMaxGifts([50, 70], 100, 1);
+
+Expected: 70;
+
+Actual: 70;
+```
+
+### Test #06
+
+```js
+Test: getMaxGifts([50, 70, 30], 100, 2);
+
+Expected: 100;
+
+Actual: 100;
+```
+
+### Test #07
+
+```js
+Test: getMaxGifts([50, 70, 30], 100, 3);
+
+Expected: 100;
+
+Actual: 100;
+```
+
+### Test #08
+
+```js
+Test: getMaxGifts([50, 10, 40, 1000, 500, 200], 199, 4);
+
+Expected: 100;
+
+Actual: 100;
+```
+
+### Test #09
+
+```js
+Test: getMaxGifts([50, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 1000, 1000);
+
+Expected: 115;
+
+Actual: 115;
+```

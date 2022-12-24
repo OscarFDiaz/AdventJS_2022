@@ -1,38 +1,135 @@
-## AdventJS Challenges
+# [Reto #4: Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_03](../Assets/Retos_SVG/4.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Santa Claus necesita hacer una revisión de sus cajas de regalos para asegurarse de que puede empaquetarlas todas en su trineo. Cuenta con una serie de <strong>cajas de diferentes tamaños, que se caracterizan por su longitud, anchura y altura.</strong>
 
-## Retos
+Tu tarea es escribir <strong>una función</strong> que, <strong>dada una lista de cajas con sus tamaños</strong>, determine si es posible <strong>empaquetar todas las cajas en una sola de manera que cada caja contenga a otra</strong> (que a su vez contenga a otra, y así sucesivamente).
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Cada caja representa sus medidas con un objeto. Por ejemplo: `{l: 2, w: 3, h: 2}`. Esto significa que la caja tiene una longitud de 2, una anchura de 3 y una altura de 2.
 
-## Tests
+Una caja entra en otra caja si todos los lados de la primera son menores a los lados de la segunda. <strong>Los elfos nos han dicho que las cajas no se pueden rotar</strong>, así que no se puede poner una caja de 2x3x2 en una caja de 3x2x2. Veamos unos ejemplos:
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+fitsInOneBox([
+  { l: 1, w: 1, h: 1 },
+  { l: 2, w: 2, h: 2 },
+]); // true
+```
+
+En el ejemplo anterior, la caja más pequeña entra en la caja más grande. Por lo tanto, es posible empaquetar todas las cajas en una sola. Ahora veamos un caso que no:
+
+```js
+const boxes = [
+  { l: 1, w: 1, h: 1 },
+  { l: 2, w: 2, h: 2 },
+  { l: 3, w: 1, h: 3 },
+];
+
+fitsInOneBox(boxes); // false
+```
+
+En el ejemplo anterior, la caja más pequeña entra en la caja del medio, pero la caja del medio no entra en la caja más grande. Por lo tanto, no es posible empaquetar todas las cajas en una sola.
+
+Ten en cuenta que las cajas pueden no venir en orden:
+
+```js
+const boxes = [
+  { l: 1, w: 1, h: 1 },
+  { l: 3, w: 3, h: 3 },
+  { l: 2, w: 2, h: 2 },
+];
+
+fitsInOneBox(boxes); // true
+```
+
+En el ejemplo anterior, la primer caja cabe en la tercera, y la tercera en la segunda. Por lo tanto, es posible empaquetar todas las cajas en una sola.
+
+<strong>Cosas a tener en cuenta:</strong>
+
+- Las cajas no se pueden rotar ya que los elfos nos han dicho que la máquina no está preparada.
+- Las cajas pueden venir desordenadas de tamaño.
+- Las cajas no son siempre cuadradas, pueden ser rectangulares.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'boolean';
+
+Actual: 'boolean';
+```
+
+### Test #02
+
+```js
+Test: fitsInOneBox([
+  { l: 1, w: 1, h: 10 },
+  { l: 3, w: 3, h: 12 },
+  { l: 2, w: 2, h: 1 },
+]);
+
+Expected: false;
+
+Actual: false;
+```
+
+### Test #03
+
+```js
+Test: fitsInOneBox([
+  { l: 1, w: 1, h: 1 },
+  { l: 2, w: 2, h: 2 },
+]);
+
+Expected: true;
+
+Actual: true;
+```
+
+### Test #04
+
+```js
+Test: fitsInOneBox([
+  { l: 1, w: 1, h: 1 },
+  { l: 2, w: 2, h: 2 },
+  { l: 3, w: 1, h: 3 },
+]);
+
+Expected: false;
+
+Actual: false;
+```
+
+### Test #05
+
+```js
+Test: fitsInOneBox([
+  { l: 1, w: 1, h: 1 },
+  { l: 2, w: 2, h: 2 },
+  { l: 2, w: 10, h: 2 },
+]);
+
+Expected: false;
+
+Actual: false;
+```
+
+### Test #06
+
+```js
+Test: fitsInOneBox([
+  { l: 1, w: 1, h: 1 },
+  { l: 3, w: 3, h: 3 },
+  { l: 2, w: 2, h: 2 },
+]);
+
+Expected: true;
+
+Actual: true;
+```

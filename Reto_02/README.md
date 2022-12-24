@@ -1,38 +1,82 @@
-## AdventJS Challenges
+# [Reto #2: Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_02](../Assets/Retos_SVG/2.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Un millonario ha comprado una red social y no trae buenas noticias. Ha anunciado que <strong>cada vez que una jornada de trabajo se pierde por un día festivo</strong>, habrá que compensarlo con <strong>dos horas extra otro día de ese mismo año</strong>.
 
-## Retos
+Obviamente la gente que trabaja en la empresa no le ha hecho ni pizca de gracia y están <strong>preparando un programa que les diga el número de horas extras que harían</strong> en el año si se aplicara la nueva norma.
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Al ser trabajo de oficina, su horario laboral es <strong>de lunes a viernes</strong>. Así que sólo tienes que preocuparte de los días festivos que caen en esos días.
 
-## Tests
+Dado un año y un array con las fechas de los días festivos, devuelve el número de horas extra que se harían ese año:
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+const year = 2022;
+const holidays = ['01/06', '04/01', '12/25']; // formato MM/DD
+
+// 01/06 es el 6 de enero, jueves. Cuenta.
+// 04/01 es el 1 de abril, un viernes. Cuenta.
+// 12/25 es el 25 de diciembre, un domingo. No cuenta.
+
+countHours(year, holidays); // 2 días -> 4 horas extra en el año
+```
+
+Cosas a tener en cuenta y consejos:
+
+- El año puede ser bisiesto. Haz las comprobaciones que necesitas para ello, si fuese necesario.
+- Aunque el 31 de diciembre sea festivo, las horas extra se harán el mismo año y no el siguiente.
+- El método Date.getDay() te devuelve el día de la semana de una fecha. El 0 es domingo, el 1 es lunes, etc.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'number';
+
+Actual: 'number';
+```
+
+### Test #02
+
+```js
+Test: countHours(2023, ['01/06', '04/01', '12/25']);
+
+Expected: 4;
+
+Actual: 4;
+```
+
+### Test #03
+
+```js
+Test: countHours(2022, ['01/06', '04/01', '12/25']);
+
+Expected: 4;
+
+Actual: 4;
+```
+
+### Test #04
+
+```js
+Test: countHours(1985, ['01/01', '01/06', '02/02', '02/17', '02/28', '06/03', '12/06', '12/25']);
+
+Expected: 10;
+
+Actual: 10;
+```
+
+### Test #05
+
+```js
+Test: countHours(2000, ['01/01']);
+
+Expected: 0;
+
+Actual: 0;
+```

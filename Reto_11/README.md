@@ -1,38 +1,112 @@
-## AdventJS Challenges
+# [Reto #11: Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_11](../Assets/Retos_SVG/11.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Papa Noél está un poco preocupado porque los preparativos están llevando mucho tiempo. Hace poco se ha sacado una certificación de Scrum y ha decidido usar la metodología para organizar el trabajo de sus elfos.
 
-## Retos
+Le dicen la duración esperada de las tareas con un string con el formato `hh:mm:ss` y en el mismo formato cuánto tiempo llevan trabajando en ella.
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Pero Papa Noél no se entera rápidamente si falta o mucho para que termine, así que nos ha pedido que hagamos un programa que nos indique la porción de la tarea que ya se ha completado.
 
-## Tests
+Por ejemplo, si la tarea dura `03:00:00` y llevan trabajando `01:00:00` entonces ya han completado `1/3` de la tarea. En código:
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+getCompleted('01:00:00', '03:00:00'); // '1/3'
+getCompleted('02:00:00', '04:00:00'); // '1/2'
+getCompleted('01:00:00', '01:00:00'); // '1/1'
+getCompleted('00:10:00', '01:00:00'); // '1/6'
+getCompleted('01:10:10', '03:30:30'); // '1/3'
+getCompleted('03:30:30', '05:50:50'); // '3/5
+```
+
+## A tener en cuenta
+
+- El formato de la hora es `hh:mm:ss`.
+- El formato de la salida es un string `a/b` donde `a` es la porción de la tarea que ya se ha completado y `b` es la porción de la tarea que falta por completar.
+- La porción siempre se muestra con la menor fracción posible. (por ejemplo, nunca se mostraría `2/4` porque se puede representar como `1/2`).
+- Si ya se ha completado la tarea, la fracción sería `1/1`.
+- Ningun elfo ha sido maltradado durante la ejecución de este reto ni han tenido que usar Scrum de verdad.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'string';
+
+Actual: 'string';
+```
+
+### Test #02
+
+```js
+Test: getCompleted('01:00:00', '03:00:00');
+
+Expected: '1/3';
+
+Actual: '1/3';
+```
+
+### Test #03
+
+```js
+Test: getCompleted('02:00:00', '04:00:00');
+
+Expected: '1/2';
+
+Actual: '1/2';
+```
+
+### Test #04
+
+```js
+Test: getCompleted('01:00:00', '01:00:00');
+
+Expected: '1/1';
+
+Actual: '1/1';
+```
+
+### Test #05
+
+```js
+Test: getCompleted('00:10:00', '01:00:00');
+
+Expected: '1/6';
+
+Actual: '1/6';
+```
+
+### Test #06
+
+```js
+Test: getCompleted('01:10:10', '03:30:30');
+
+Expected: '1/3';
+
+Actual: '1/3';
+```
+
+### Test #07
+
+```js
+Test: getCompleted('02:20:20', '03:30:30');
+
+Expected: '2/3';
+
+Actual: '2/3';
+```
+
+### Test #08
+
+```js
+Test: getCompleted('03:30:30', '05:50:50');
+
+Expected: '3/5';
+
+Actual: '3/5';
+```

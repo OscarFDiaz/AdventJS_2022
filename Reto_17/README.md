@@ -1,38 +1,45 @@
-## AdventJS Challenges
+# [Reto #17: Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)
 
-![adventJs](./Assets/Portada.jpg)
+![Reto_17](../Assets/Retos_SVG/17.svg)
 
-## <img src="https://adventjs.dev/android-icon-192x192.png" width="20" height="20" /> <strong> [adventJS](https://adventjs.dev/es) es una iniciativa de [@midudev](https://midu.dev/)</strong>
+Estamos preparando los sacos para los regalos de Navidad pero cada saco tiene un **límite de peso.**
 
-## Retos
+Nos dan un array con los nombres de los regalos y un número que es el peso máximo que puede llevar cada saco. El **peso de cada regalo es la longitud de su nombre.**
 
-| Reto | Título                                                                                         | Solución                       | Puntos |
-| ---- | ---------------------------------------------------------------------------------------------- | ------------------------------ | ------ |
-| #01  | [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)       | [Ver solución](./challenge01/) | 131    |
-| #02  | [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)                    | [Ver solución](./challenge02/) | 121    |
-| #03  | [¿Cuántas cajas de regalos puede llevar Papá Noel?](https://adventjs.dev/es/challenges/2022/3) | [Ver solución](./challenge03/) | 165    |
-| #04  | [Una caja dentro de otra caja y otra...](https://adventjs.dev/es/challenges/2022/4)            | [Ver solución](./challenge04/) | 172    |
-| #05  | [Optimizando viajes de Santa](https://adventjs.dev/es/challenges/2022/5)                       | [Ver solución](./challenge05/) | 140    |
-| #06  | [Creando adornos navideños](https://adventjs.dev/es/challenges/2022/6)                         | [Ver solución](./challenge06/) | 160    |
-| #07  | [Haciendo inventario de regalos](https://adventjs.dev/es/challenges/2022/7)                    | [Ver solución](./challenge07/) | 400    |
-| #08  | [¡Necesitamos un mecánico!](https://adventjs.dev/es/challenges/2022/8)                         | [Ver solución](./challenge08/) | 240    |
-| #09  | [Las locas luces de Navidad](https://adventjs.dev/es/challenges/2022/9)                        | [Ver solución](./challenge09/) | 300    |
-| #10  | [El salto del trineo de Papá Noel](https://adventjs.dev/es/challenges/2022/10)                 | [Ver solución](./challenge10/) | 260    |
-| #11  | [Papá Noel es Scrum Master](https://adventjs.dev/es/challenges/2022/11)                        | [Ver solución](./challenge11/) | 260    |
-| #12  | [Trineos eléctricos, ¡guau!](https://adventjs.dev/es/challenges/2022/12)                       | [Ver solución](./challenge12/) | 400    |
-| #13  | [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)              | [Ver solución](./challenge13/) | 300    |
-| #14  | [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                                  | [Ver solución](./challenge14/) | 300    |
-| #15  | [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)                    | [Ver solución](./challenge15/) | 260    |
-| #16  | [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)               | [Ver solución](./challenge16/) | 300    |
-| #17  | [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)                    | [Ver solución](./challenge17/) | 260    |
-| #18  | [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)                         | [Ver solución](./challenge18/) | 200    |
-| #19  | [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)                            | [Ver solución](./challenge19/) | 400    |
-| #20  | [Más viajes retadores](https://adventjs.dev/es/challenges/2022/20)                             | [Ver solución](./challenge20/) | 10     |
-| #21  | [Creando la tabla de regalos](https://adventjs.dev/es/challenges/2022/21)                      | [Ver solución](./challenge21/) | 300    |
-| #22  | [La iluminación en sintonía](https://adventjs.dev/es/challenges/2022/22)                       | [Ver solución](./challenge22/) | 400    |
-| #23  | [Compilador de Papá Noel](https://adventjs.dev/es/challenges/2022/23)                          | [Ver solución](./challenge23/) | 10     |
-| #24  |                                                                                                |                                |        |
+Escribe una función que agrupe los regalos en sacos y devuelva un array con los nombres de los regalos de cada saco. Para agrupar los regalos, se separan los nombres por espacios (el espacio no cuenta como peso).
 
-## Tests
+**¡Pero ojo!** Cada saco puede llevar un máximo de peso, y si el peso de los regalos de un saco supera el peso máximo, se debe separar el último regalo del saco y ponerlo en el siguiente saco.
 
-Cada challenge viene con su propio test basado en los test visibles de la cada reto, para ejecutarlos se necesita entrar aen la carpeta correspondiente de cada challenge y ejecutar `npm install`, luego `npm run test` para correr los test del correspondiente challenge.
+```js
+carryGifts(['game', 'bike', 'book', 'toy'], 10);
+// ['game bike', 'book toy']
+// en cada saco se puede llevar 10kg
+// el primer saco lleva 'game' y 'bike' que pesan 4kg y 4kg
+// el segundo saco lleva 'book' y ' toy' que pesan 4kg y 3kg
+
+carryGifts(['game', 'bike', 'book', 'toy'], 7);
+// ['game', 'bike', 'book toy']
+// en cada saco se puede llevar 7kg
+// el primer saco sólo puede llevar 'game' que pesa 4kg
+// el segundo saco sólo puede llevar 'bike' que pesa 4kg
+// el tercer saco lleva 'book' y 'toy' que pesan 4kg y 3kg
+
+carryGifts(['game', 'bike', 'book', 'toy'], 4);
+// ['game', 'bike', 'book', 'toy']
+// en cada saco se puede llevar 4kg
+// cada saco sólo puede llevar un regalo
+
+carryGifts(['toy', 'gamme', 'toy', 'bike'], 6);
+// ['toy', 'gamme', 'toy', 'bike']
+// en cada saco se puede llevar 6kg
+// cada saco sólo puede llevar un regalo
+// fíjate que no se puede llevar 'toy toy' en un saco
+// porque no está uno al lado del otro
+```
+
+## Ten en cuenta:
+
+- Los regalos siempre se agrupan por orden de aparición en el array.
+- No puedes cambiar el orden de los regalos en el array a la hora de agruparlos.
+- Se pueden agrupar todos los regalos en un solo saco.
+- Si no se puede agrupar ningún regalo en un saco, se devuelve un array vacío.
