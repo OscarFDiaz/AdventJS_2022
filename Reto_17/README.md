@@ -43,3 +43,77 @@ carryGifts(['toy', 'gamme', 'toy', 'bike'], 6);
 - No puedes cambiar el orden de los regalos en el array a la hora de agruparlos.
 - Se pueden agrupar todos los regalos en un solo saco.
 - Si no se puede agrupar ningún regalo en un saco, se devuelve un array vacío.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'array';
+
+Actual: 'array';
+```
+
+### Test #02
+
+```js
+Test: carryGifts(['game', 'bike', 'book', 'toy'], 10);
+
+Expected: ['game bike', 'book toy'];
+
+Actual: ['game bike', 'book toy'];
+```
+
+### Test #03
+
+```js
+Test: carryGifts(['game', 'bike', 'book', 'toy'], 7);
+
+Expected: ['game', 'bike', 'book toy'];
+
+Actual: ['game', 'bike', 'book toy'];
+```
+
+### Test #04
+
+```js
+Test: carryGifts(['game', 'bike', 'book', 'toy'], 4);
+
+Expected: ['game', 'bike', 'book', 'toy'];
+
+Actual: ['game', 'bike', 'book', 'toy'];
+```
+
+### Test #05
+
+```js
+Test: carryGifts(['toy', 'gamme', 'toy', 'bike'], 6);
+
+Expected: ['toy', 'gamme', 'toy', 'bike'];
+
+Actual: ['toy', 'gamme', 'toy', 'bike'];
+```
+
+### Test #06
+
+```js
+Test: carryGifts(['toy', 'toy', 'toy', 'toy'], 2);
+
+Expected: [];
+
+Actual: [];
+```
+
+### Test #07
+
+```js
+Test: carryGifts(['toy', 'toy', 'disk', 'disk', 'toy', 'toy'], 7);
+
+Expected: ['toy toy', 'disk', 'disk toy', 'toy'];
+
+Actual: ['toy toy', 'disk', 'disk toy', 'toy'];
+```

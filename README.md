@@ -6,7 +6,7 @@
 
 ## Retos 🎯
 
-|                              Img                               | Reto |                                             Título                                             |        Descripción         | Dificultad |         Solución          | Puntos: 2014, º574 |
+|                              Img                               | Reto |                                             Título                                             |        Descripción         | Dificultad |         Solución          | Puntos: 2344, º505 |
 | :------------------------------------------------------------: | :--: | :--------------------------------------------------------------------------------------------: | :------------------------: | :--------: | :-----------------------: | :----------------: |
 | <img src="./Assets/Retos_SVG/1.svg" width="80" height="80" />  | #01  |    [¡Automatizando envolver regalos de navidad!](https://adventjs.dev/es/challenges/2022/1)    | [Ver](./Reto_01/README.md) |   Fácil    | [Ver](./Reto_01/index.js) |        106         |
 | <img src="./Assets/Retos_SVG/2.svg" width="80" height="80" />  | #02  |          [Nadie quiere hacer horas extra](https://adventjs.dev/es/challenges/2022/2)           | [Ver](./Reto_02/README.md) |   Fácil    | [Ver](./Reto_02/index.js) |         88         |
@@ -23,7 +23,7 @@
 | <img src="./Assets/Retos_SVG/13.svg" width="80" height="80" /> | #13  |       [Backup de los archivos de Papá Noel](https://adventjs.dev/es/challenges/2022/13)        | [Ver](./Reto_13/README.md) |   Fácil    | [Ver](./Reto_13/index.js) |        260         |
 | <img src="./Assets/Retos_SVG/14.svg" width="80" height="80" /> | #14  |                 [El mejor camino](https://adventjs.dev/es/challenges/2022/14)                  | [Ver](./Reto_14/README.md) |   Medio    | [Ver](./Reto_14/index.js) |        300         |
 | <img src="./Assets/Retos_SVG/15.svg" width="80" height="80" /> | #15  |          [Decorando el árbol de Navidad](https://adventjs.dev/es/challenges/2022/15)           | [Ver](./Reto_15/README.md) |   Medio    | [Ver](./Reto_15/index.js) |         10         |
-| <img src="./Assets/Retos_SVG/16.svg" width="80" height="80" /> | #16  |        [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)        | [Ver](./Reto_16/README.md) |  Difícil   | [Ver](./Reto_16/index.js) |         ?          |
+| <img src="./Assets/Retos_SVG/16.svg" width="80" height="80" /> | #16  |        [Arreglando las cartas de Papá Noel](https://adventjs.dev/es/challenges/2022/16)        | [Ver](./Reto_16/README.md) |  Difícil   | [Ver](./Reto_16/index.js) |        200         |
 | <img src="./Assets/Retos_SVG/17.svg" width="80" height="80" /> | #17  |          [Llevando los regalos en sacos](https://adventjs.dev/es/challenges/2022/17)           | [Ver](./Reto_17/README.md) |   Medio    | [Ver](./Reto_17/index.js) |         ?          |
 | <img src="./Assets/Retos_SVG/18.svg" width="80" height="80" /> | #18  |             [¡Nos quedamos sin tinta!](https://adventjs.dev/es/challenges/2022/18)             | [Ver](./Reto_18/README.md) |   Fácil    | [Ver](./Reto_18/index.js) |         80         |
 | <img src="./Assets/Retos_SVG/19.svg" width="80" height="80" /> | #19  |              [Ordenando los regalos](https://adventjs.dev/es/challenges/2022/19)               | [Ver](./Reto_19/README.md) |   Fácil    | [Ver](./Reto_19/index.js) |        300         |
