@@ -52,3 +52,125 @@ La tabla usa los símbolos: `+` para el borde superior, `*` para el borde inferi
 - Adapta la tabla a la longitud de los nombres de los regalos y de las cantidades o los títulos de las columnas.
 - No hace falta que ordenes los resultados.
 - La tabla no termina con salto de línea.
+
+---
+
+## Resultados
+
+### Test #01
+
+```js
+Test: return type;
+
+Expected: 'string';
+
+Actual: 'string';
+```
+
+### Test #02
+
+```js
+Test: printTable([
+  { name: 'PlayStation 5', quantity: 9234782374892 },
+  { name: 'Book Learn Web Dev', quantity: 23531 },
+]);
+
+Expected: '++++++++++++++++++++++++++++++++++++++\n
+           | Gift               | Quantity      |\n
+           | ------------------ | ------------- |\n
+           | PlayStation 5      | 9234782374892 |\n
+           | Book Learn Web Dev | 23531         |\n
+           **************************************';
+
+Actual: '++++++++++++++++++++++++++++++++++++++\n
+         | Gift               | Quantity      |\n
+         | ------------------ | ------------- |\n
+         | PlayStation 5      | 9234782374892 |\n
+         | Book Learn Web Dev | 23531         |\n
+         **************************************';
+```
+
+### Test #03
+
+```js
+Test: printTable([
+  { name: 'Game', quantity: 2 },
+  { name: 'Bike', quantity: 1 },
+  { name: 'Book', quantity: 3 },
+]);
+
+Expected: '+++++++++++++++++++\n
+           | Gift | Quantity |\n
+           | ---- | -------- |\n
+           | Game | 2        |\n
+           | Bike | 1        |\n
+           | Book | 3        |\n
+           *******************';
+
+Actual: '+++++++++++++++++++\n
+         | Gift | Quantity |\n
+         | ---- | -------- |\n
+         | Game | 2        |\n
+         | Bike | 1        |\n
+         | Book | 3        |\n
+         *******************';
+```
+
+### Test #04
+
+```js
+Test: printTable([{ name: 'Game', quantity: 10000 }]);
+
+Expected: '+++++++++++++++++++\n
+           | Gift | Quantity |\n
+           | ---- | -------- |\n
+           | Game | 10000    |\n
+           *******************';
+
+Actual:   '+++++++++++++++++++\n
+           | Gift | Quantity |\n
+           | ---- | -------- |\n
+           | Game | 10000    |\n
+           *******************';
+```
+
+### Test #05
+
+```js
+Test: printTable([{ name: 'Game', quantity: 1234567890 }]);
+
+Expected: '+++++++++++++++++++++\n
+           | Gift | Quantity   |\n
+           | ---- | ---------- |\n
+           | Game | 1234567890 |\n
+           *********************';
+
+Actual:   '+++++++++++++++++++++\n
+           | Gift | Quantity   |\n
+           | ---- | ---------- |\n
+           | Game | 1234567890 |\n
+           *********************';
+```
+
+### Test #06
+
+```js
+Test: printTable([
+  { name: 'Toy', quantity: 12 },
+  { name: 'Mic', quantity: 123 },
+]);
+
+Expected: '+++++++++++++++++++\n
+           | Gift | Quantity |\n
+           | ---- | -------- |\n
+           | Toy  | 12       |\n
+           | Mic  | 123      |\n
+           *******************';
+
+Actual:   '+++++++++++++++++++\n
+           | Gift | Quantity |\n
+           | ---- | -------- |\n
+           | Toy  | 12       |\n
+           | Mic  | 123      |\n
+           *******************';
+```
